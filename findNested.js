@@ -9,3 +9,14 @@ cursor = db.films.find().pretty()
 while (cursor.hasNext()){
 	printjson(cursor.next());
 }
+
+db.films.aggregate(
+[
+	{
+		$group : {
+		_id: '$year',
+		total : {$sum:1}
+		}
+		}
+	]
+)
